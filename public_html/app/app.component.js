@@ -20,11 +20,12 @@
                     self.title = 'Task Management in a Team';
                     self.description = 'This is a demo app for task management in a team.';
                     self.users = [];
+                    self.tasks = [];
 
                     addDummyData();
 
                     function addDummyData() {
-                        addUser({
+                        var andrew = addUser({
                             firstName: 'Andrew',
                             lastName: 'Miller',
                             email: 'andrew.miller@example.com'
@@ -39,18 +40,48 @@
                             lastName: 'Hunter',
                             email: 'c_hunter@example.com'
                         });
-                        addUser({
+                        var debora = addUser({
                             firstName: 'Debora',
                             lastName: 'Smith',
                             email: 'debora@example.com'
+                        });
+
+                        addTask({
+                            title: 'Wash the dishes',
+                            progress: 0.05,
+                            user: andrew
+                        });
+                        addTask({
+                            title: 'Do the laundry',
+                            progress: 0.5,
+                            user: andrew
+                        });
+                        addTask({
+                            title: 'Clean the floor',
+                            progress: 0.8,
+                            user: debora
+                        });
+                        addTask({
+                            title: 'Cook dinner',
+                            progress: 0.33
                         });
                     }
 
                     function addUser(user)
                     {
-                        self.users.push(new app.User(user));
+                        user.id = self.users.length;
+                        var result = new app.User(user);
+                        self.users.push(result);
+                        return result;
                     }
 
+                    function addTask(task)
+                    {
+                        task.id = self.tasks.length;
+                        var result = new app.Task(task);
+                        self.tasks.push(result);
+                        return result;
+                    }
                 }
             });
 })(window.app || (window.app = {}));

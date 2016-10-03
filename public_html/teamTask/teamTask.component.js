@@ -13,11 +13,13 @@
             ng.core.Component({
                 selector: 'team-task',
                 templateUrl: 'teamTask/teamTask.component.html',
-                inputs: ['users']   
+                inputs: ['users', 'tasks']
             })
             .Class({
                 constructor: function () {
-                    this.users = [];                    
+                    var self = this;
+                    self.users = [];
+                    self.tasks = [];
                 }
             });
 })(window.app || (window.app = {}));
