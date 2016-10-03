@@ -1,0 +1,11 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}NgTeamTask is licensed under the conditions of the MIT License (MIT)
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}Copyright (c) ${date?date?string("yyyy")} Philip Stöhrer
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
+<#if licenseLast??>
+${licenseLast}
+</#if>
