@@ -19,8 +19,7 @@
                     var self = this;
                     self.title = 'Task Management in a Team';
                     self.description = 'This is a demo app for task management in a team.';
-                    self.users = [];
-                    self.tasks = [];
+                    self.taskManagement = new app.TaskManagement();
 
                     addDummyData();
 
@@ -69,17 +68,17 @@
 
                     function addUser(user)
                     {
-                        user.id = self.users.length;
+                        user.id = self.taskManagement.users.length;
                         var result = new app.User(user);
-                        self.users.push(result);
+                        self.taskManagement.users.push(result);
                         return result;
                     }
 
                     function addTask(task)
                     {
-                        task.id = self.tasks.length;
+                        task.id = self.taskManagement.tasks.length;
                         var result = new app.Task(task);
-                        self.tasks.push(result);
+                        self.taskManagement.tasks.push(result);
                         return result;
                     }
                 }

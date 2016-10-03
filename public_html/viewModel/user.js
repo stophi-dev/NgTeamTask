@@ -19,15 +19,6 @@
         self.getFullName = function () {
             return self.firstName + ' ' + self.lastName;
         };
-
-        self.getUserTasks = function (allTasks) {
-            return allTasks.filter(function (task) {
-                if (task.user)
-                {
-                    return task.user ? task.user.id === self.id : false;
-                }
-            });
-        };
     };
 })(window.app || (window.app = {}));
 
