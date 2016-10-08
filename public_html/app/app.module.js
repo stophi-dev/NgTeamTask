@@ -14,7 +14,8 @@
                 imports: [ng.platformBrowser.BrowserModule],
                 declarations: [
                     app.AppComponent,
-                    app.TeamTaskComponent
+                    app.TeamTaskComponent,
+                    app.TaskListComponent
                 ],
                 bootstrap: [app.AppComponent]
             })

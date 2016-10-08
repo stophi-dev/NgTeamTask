@@ -6,10 +6,9 @@ Copyright (c) 2016 Philip Stöhrer
 See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
 -->
 <ul>
-    <li *ngFor="let user of taskManagement.users" >
+    <li *ngFor="let user of taskManagement.users" 
+        attr.data-userid="{{user.id}}">
         {{user.getFullName()}} ({{user.email}})
-        <ul>
-            <li *ngFor="let task of taskManagement.getTasksForUserId(user.id)">{{task.title}}</li>
-        </ul>
-    </li>
+<task-list [taskManagement]="taskManagement" [user]="user"></task-list>
+</li>
 </ul>

@@ -24,7 +24,7 @@
                     addDummyData();
 
                     function addDummyData() {
-                        var andrew = addUser({
+                        addUser({
                             firstName: 'Andrew',
                             lastName: 'Miller',
                             email: 'andrew.miller@example.com'
@@ -39,7 +39,7 @@
                             lastName: 'Hunter',
                             email: 'c_hunter@example.com'
                         });
-                        var debora = addUser({
+                        addUser({
                             firstName: 'Debora',
                             lastName: 'Smith',
                             email: 'debora@example.com'
@@ -47,23 +47,30 @@
 
                         addTask({
                             title: 'Wash the dishes',
-                            progress: 0.05,
-                            user: andrew
+                            progress: 0.05
                         });
                         addTask({
                             title: 'Do the laundry',
-                            progress: 0.5,
-                            user: andrew
+                            progress: 0.5
                         });
                         addTask({
                             title: 'Clean the floor',
-                            progress: 0.8,
-                            user: debora
+                            progress: 0.8
                         });
                         addTask({
                             title: 'Cook dinner',
                             progress: 0.33
                         });
+                        addTask({
+                            title: 'Buy food',
+                            progress: 0
+                        });
+
+                        self.taskManagement.assignTaskToUser(0, 0);
+                        self.taskManagement.assignTaskToUser(1, 0);
+                        self.taskManagement.assignTaskToUser(2, 3);
+                        self.taskManagement.assignTaskToUser(3, 1);
+                        self.taskManagement.assignTaskToUser(4, 3);
                     }
 
                     function addUser(user)

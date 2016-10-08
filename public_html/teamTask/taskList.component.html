@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<!--
+NgTeamTask is licensed under the conditions of the MIT License (MIT)
+
+Copyright (c) 2016 Philip Stöhrer
+
+See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
+-->
+<ul class="task-container ui-sortable">    
+    <li *ngFor="let task of taskManagement.getTasksForUserId(user.id)"
+        attr.data-taskid="{{task.id}}"
+        class="ui-sortable-handle">{{task.title}}</li>
+</ul>

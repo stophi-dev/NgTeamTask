@@ -14,6 +14,5 @@
         self.id = task.id;
         self.title = task.title;
         self.progress = task.progress;
-        self.user = task.user || null;
     };
 })(window.app || (window.app = {}));
