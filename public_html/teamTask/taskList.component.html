@@ -6,11 +6,56 @@ Copyright (c) 2016 Philip Stöhrer
 
 See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
 -->
-<ul class="task-container ui-sortable">    
-    <li *ngFor="let task of taskManagement.getTasksForUserId(user.id)"
-        attr.data-taskid="{{task.id}}"
-        class="ui-sortable-handle">{{task.title}}
-            <progress attr.max="{{task.workUnits}}" attr.value="{{task.progress}}"></progress>
-            <span>{{task.getProgressInPercent()}}%</span>
-    </li>
-</ul>
+<style>
+    .task-item, .task-not-assigned {
+        padding: 0.5em;
+        background-color: #ffffd7;        
+    }
+    .task-item {
+        display: flex;
+        margin-bottom: 4px;
+        border-radius: 5px;
+        cursor: pointer;        
+    }
+    .task-item:last-child {
+        margin-bottom: 0;
+    }
+    .task-item:hover {
+        background-color: #ccddff;
+    }
+    .task-not-assigned {
+        font-style: italic;
+        color: #555;        
+    }
+    .task-title {
+        flex-grow: 2;
+    }
+    .task-progress-value {
+        width: 5ch;
+        text-align: right;
+        padding-left: 6px;
+    }
+    progress {
+        color: #0063a6;
+        font-size: .6em;
+        line-height: 1.5em;
+        text-indent: .5em;
+        height: 1.8em;
+        border: 1px solid #0063a6;
+        background: #fff;        
+    }
+
+    progress::-webkit-progress-bar { background: #fff; }
+    progress::-webkit-progress-value { background: #0063a6; }
+</style>
+<div class="task-container">    
+    <div class="task-not-assigned" *ngIf="taskManagement.getTasksForUserId(user.id).length === 0">
+        Currently no task assigned. To assign a task, drag it here.
+    </div>
+    <div class="task-item" *ngFor="let task of taskManagement.getTasksForUserId(user.id)"
+         attr.data-taskid="{{task.id}}">
+        <span class="task-title">{{task.title}}</span>
+        <progress attr.max="{{task.workUnits}}" attr.value="{{task.progress}}"></progress>
+        <span class="task-progress-value">{{task.getProgressInPercent()}}%</span>
+    </div>
+</div>

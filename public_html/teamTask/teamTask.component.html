@@ -5,10 +5,31 @@ Copyright (c) 2016 Philip Stöhrer
 
 See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
 -->
-<ul>
-    <li *ngFor="let user of taskManagement.users" 
-        attr.data-userid="{{user.id}}">
-        {{user.getFullName()}} ({{user.email}})
-        <task-list [taskManagement]="taskManagement" [user]="user"></task-list>
-    </li>
-</ul>
+<style>
+    .user {        
+        margin: 1em;
+        background-color: #ded985;
+        border: 4px solid #ded985;
+        border-radius: 5px;
+    }
+    .user-info {
+        padding: 1em;
+    }
+    .user-name {
+        font-size: larger;
+    }
+    .user-email { 
+        color: #333;
+    }
+</style>
+<div>
+        <div class="user" *ngFor="let user of taskManagement.users" 
+             attr.data-userid="{{user.id}}">
+             <div class="user-info">
+                <span class="user-name">{{user.getFullName()}}</span>
+                <span class="user-email">({{user.email}})</span>
+            </div>
+
+            <task-list [taskManagement]="taskManagement" [user]="user"></task-list>
+        </div>
+</div>

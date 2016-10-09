@@ -26,7 +26,7 @@
                     var taskContainer = $(self.elementRef.nativeElement).find('.task-container');
                     taskContainer.sortable({
                         connectWith: '.task-container',
-                        helper: 'clone',
+                        items: '> .task-item',
                         update: function (event, ui) {
 
                             var taskId = ui.item.attr('data-taskid');
@@ -46,7 +46,7 @@
                                 throw new Error('Cannot insert task here. Invalid userId: ' + userId);
                             }
 
-                            self.taskManagement.assignTaskToUser(parseInt(taskId), parseInt(self.user.id), taskPosition);                            
+                            self.taskManagement.assignTaskToUser(parseInt(taskId), parseInt(self.user.id), taskPosition);
 
                             /*
                              * Angular2 interferes with JQuery UI Sortable under this condition:
