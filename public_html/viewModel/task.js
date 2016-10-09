@@ -9,10 +9,10 @@
 (function (app) {
     app.Task = function (task) {
         var self = this;
-        var task = task || {title: '', progress: 0};
+        var builder = task || {title: '', progress: 0};
 
-        self.id = task.id;
-        self.title = task.title;
-        self.progress = task.progress;
+        self.id = builder.id;
+        self.title = builder.title;
+        self.progress = builder.progress;
     };
 })(window.app || (window.app = {}));

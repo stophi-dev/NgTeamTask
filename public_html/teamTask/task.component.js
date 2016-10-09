@@ -6,6 +6,8 @@
  * See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
  */
 
+/* global ng */
+
 (function (app) {
     app.TaskComponent =
             ng.core.Component({
