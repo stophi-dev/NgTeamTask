@@ -9,5 +9,6 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
 <ul class="task-container ui-sortable">    
     <li *ngFor="let task of taskManagement.getTasksForUserId(user.id)"
         attr.data-taskid="{{task.id}}"
-        class="ui-sortable-handle">{{task.title}}</li>
+        class="ui-sortable-handle">{{task.title}}
+        <progress attr.max="{{task.workUnits}}" attr.value="{{task.progress}}"></progress><span>{{task.getProgressInPercent()}}%</span>        
 </ul>

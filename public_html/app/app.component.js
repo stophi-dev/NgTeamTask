@@ -47,23 +47,28 @@
 
                         addTask({
                             title: 'Wash the dishes',
-                            progress: 0.05
+                            progress: 50,
+                            workUnits: 1000
                         });
                         addTask({
                             title: 'Do the laundry',
-                            progress: 0.5
+                            progress: 503,
+                            workUnits: 1000
                         });
                         addTask({
                             title: 'Clean the floor',
-                            progress: 0.8
+                            progress: 830,
+                            workUnits: 1000
                         });
                         addTask({
                             title: 'Cook dinner',
-                            progress: 0.33
+                            progress: 1,
+                            workUnits: 3
                         });
                         addTask({
                             title: 'Buy food',
-                            progress: 0
+                            progress: 0,
+                            workUnits: 10
                         });
 
                         self.taskManagement.assignTaskToUser(0, 0);
