@@ -9,6 +9,6 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
     <li *ngFor="let user of taskManagement.users" 
         attr.data-userid="{{user.id}}">
         {{user.getFullName()}} ({{user.email}})
-<task-list [taskManagement]="taskManagement" [user]="user"></task-list>
-</li>
+        <task-list [taskManagement]="taskManagement" [user]="user"></task-list>
+    </li>
 </ul>
