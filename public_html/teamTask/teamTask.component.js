@@ -19,6 +19,11 @@
                 constructor: function () {
                     var self = this;
                     self.taskManagement = new app.TaskManagement();
+                    self.addNewTask = function (newTaskField) {
+                        self.taskManagement.addTask(newTaskField.value);
+                        newTaskField.value = null;
+                        newTaskField.focus();
+                    };
                 }
             });
 })(window.app || (window.app = {}));
