@@ -82,15 +82,13 @@
                         user.id = self.taskManagement.users.length;
                         var result = new app.User(user);
                         self.taskManagement.users.push(result);
-                        return result;
                     }
 
-                    function addTask(task)
+                    function addTask(taskValues)
                     {
-                        task.id = self.taskManagement.getTaskCount();
-                        var result = new app.Task(task);
-                        self.taskManagement.addTask(result);
-                        return result;
+                        var task = self.taskManagement.addTask(taskValues.title);
+                        task.progress = taskValues.progress;
+                        task.workUnits = taskValues.workUnits; 
                     }
                 }
             });

@@ -9,6 +9,7 @@
 (function (app) {
     app.TaskManagement = function (users) {
         var self = this;
+        var taskIdCounter = 0;
         self.users = users || [];
         var unassignedTasks = [];
 
@@ -71,13 +72,16 @@
 
         self.getTaskCount = function () {
             return getTasks().length;
-        };
-
-        self.addTask = function (task) {
-            if (containsItem(task.id, getTasks())) {
-                throw new Error('Cannot add new task: ID ' + task.id + ' is already in use');
-            }
+        };        
+        
+        self.addTask = function (taskTitle) {
+            var task = new app.Task();
+            task.id = taskIdCounter;
+            task.title = taskTitle; 
+            
+            taskIdCounter++;
             unassignedTasks.push(task);
+            return task;
         };
 
         self.getTaskById = function (taskId) {
