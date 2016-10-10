@@ -21,6 +21,16 @@
                         this.taskManagement = new app.TaskManagement();
                         this.elementRef = elementRef;
                     }],
+                ngOnInit: function () {
+                    this.unassigned = typeof this.user === typeof undefined;
+                    if (this.unassigned) {
+                        this.noItemText = 'All ongoing tasks are assigned to a user.';
+                        this.tasks = this.taskManagement.getUnassignedTasks();
+                    } else {
+                        this.noItemText = 'Currently no task assigned. To assign a task, drag it here.';
+                        this.tasks = this.taskManagement.getTasksForUserId(this.user.id);
+                    }                                                
+                },
                 ngAfterViewInit: function () {
                     var self = this;
                     var taskContainer = $(self.elementRef.nativeElement).find('.task-container');
@@ -34,19 +44,12 @@
                                 throw new Error('Cannot insert task here. Invalid taskId: ' + taskId);
                             }
                             var taskPosition = ui.item.prevAll('[data-taskid]').length;
-                            var newUserElem = ui.item.parents('[data-userid]');
-                            if (newUserElem.length === 0) {
-                                throw new Error('Cannot insert task here. No userId found');
-                            }
-                            if (newUserElem.length > 1) {
-                                throw new Error('Cannot insert task here. User is ambiguous');
-                            }
-                            var userId = newUserElem.attr('data-userid');
-                            if (isNaN(userId)) {
-                                throw new Error('Cannot insert task here. Invalid userId: ' + userId);
-                            }
 
-                            self.taskManagement.assignTaskToUser(parseInt(taskId), parseInt(self.user.id), taskPosition);
+                            if (self.unassigned) {
+                                self.taskManagement.deassignTask(parseInt(taskId), taskPosition);
+                            } else {
+                                self.taskManagement.assignTaskToUser(parseInt(taskId), self.user.id, taskPosition);
+                            }
 
                             /*
                              * Angular2 interferes with JQuery UI Sortable under this condition:

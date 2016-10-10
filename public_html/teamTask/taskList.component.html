@@ -49,10 +49,10 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
     progress::-webkit-progress-value { background: #0063a6; }
 </style>
 <div class="task-container">    
-    <div class="task-not-assigned" *ngIf="taskManagement.getTasksForUserId(user.id).length === 0">
-        Currently no task assigned. To assign a task, drag it here.
+    <div class="task-not-assigned" *ngIf="tasks.length === 0">
+       {{noItemText}}
     </div>
-    <div class="task-item" *ngFor="let task of taskManagement.getTasksForUserId(user.id)"
+    <div class="task-item" *ngFor="let task of tasks"
          attr.data-taskid="{{task.id}}">
         <span class="task-title">{{task.title}}</span>
         <progress attr.max="{{task.workUnits}}" attr.value="{{task.progress}}"></progress>

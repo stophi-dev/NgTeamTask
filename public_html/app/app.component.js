@@ -75,7 +75,6 @@
                         self.taskManagement.assignTaskToUser(1, 0);
                         self.taskManagement.assignTaskToUser(2, 3);
                         self.taskManagement.assignTaskToUser(3, 1);
-                        self.taskManagement.assignTaskToUser(4, 3);
                     }
 
                     function addUser(user)
@@ -88,9 +87,9 @@
 
                     function addTask(task)
                     {
-                        task.id = self.taskManagement.tasks.length;
+                        task.id = self.taskManagement.getTaskCount();
                         var result = new app.Task(task);
-                        self.taskManagement.tasks.push(result);
+                        self.taskManagement.addTask(result);
                         return result;
                     }
                 }
