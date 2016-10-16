@@ -79,6 +79,22 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
         line-height: 1.5em;
     }
 
+    @-webkit-keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 100%}
+    }
+    @keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 100%}
+    }
+
+    .fade-in {
+        -webkit-animation-name: fadeIn; 
+        -webkit-animation-duration: 0.7s;  
+        animation-name: fadeIn;
+        animation-duration: 0.7s;
+    }
+
     progress::-webkit-progress-bar { background: #fff; }
     progress::-webkit-progress-value { background: #0063a6; }
 </style>
@@ -86,7 +102,7 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
     <div class="task-not-assigned" *ngIf="tasks.length === 0">
         {{noItemText}}
     </div>
-    <div class="task-item" *ngFor="let task of tasks"
+    <div class="task-item fade-in" *ngFor="let task of tasks"
          attr.data-taskid="{{task.id}}">
          <span class="task-title">{{task.title}}</span>
         <progress attr.max="{{task.workUnits}}" attr.value="{{task.progress}}"></progress>
@@ -94,8 +110,8 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
         <button class="button" [title]="deleteTaskToolTip" (click)="showDeleteTaskDialog(task.id)">
             <span class="ui-icon ui-icon-close"></span>
         </button>
-        
-        <div class="modal-dialog" *ngIf="currentTaskToDelete === task.id" 
+
+        <div class="modal-dialog fade-in" *ngIf="currentTaskToDelete === task.id" 
              (click)="hideDeleteTaskDialog()" (mousedown)="$event.stopPropagation();">
              <div class="modal-content" (click)="$event.stopPropagation();">
                 <div>{{deleteTaskConfirmText(task.title)}}</div>                
