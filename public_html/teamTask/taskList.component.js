@@ -6,7 +6,7 @@
  * See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
  */
 
-/* global ng, $, Rx */
+/* global ng, $ */
 
 (function (app) {
     app.TaskListComponent =
