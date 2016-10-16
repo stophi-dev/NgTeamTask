@@ -18,7 +18,7 @@
                 constructor: function () {
                     var self = this;
                     self.title = 'Task Management in a Team';
-                    self.description = 'This is a demo app for task management in a team.';
+                    self.description = 'This is a demo app for task management in a team. Add, delete and assign tasks.';
                     self.taskManagement = new app.TaskManagement();
 
                     addDummyData();
