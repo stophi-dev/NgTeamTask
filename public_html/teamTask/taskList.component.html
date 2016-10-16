@@ -97,7 +97,7 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
         
         <div class="modal-dialog" *ngIf="currentTaskToDelete === task.id" 
              (click)="hideDeleteTaskDialog()" (mousedown)="$event.stopPropagation();">
-             <div class="modal-content">
+             <div class="modal-content" (click)="$event.stopPropagation();">
                 <div>{{deleteTaskConfirmText(task.title)}}</div>                
                 <div>
                     <button class="button" (click)="taskManagement.deleteTask(task.id)">{{deleteDialogYesButtonText}}</button>
