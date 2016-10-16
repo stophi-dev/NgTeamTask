@@ -22,6 +22,7 @@
                         this.elementRef = elementRef;
                     }],
                 ngOnInit: function () {
+                    var self = this;
                     this.unassigned = typeof this.user === typeof undefined;
                     if (this.unassigned) {
                         this.noItemText = 'All ongoing tasks are assigned to a user.';
@@ -44,6 +45,17 @@
                     };
                     this.deleteDialogYesButtonText = 'Yes, delete';
                     this.deleteDialogCancelButtonText = 'Cancel';
+                    
+                    var deletingTaskId = null;
+                    this.isDeleting = function(taskId) {
+                        return deletingTaskId === taskId;
+                    };
+                    this.deleteTask = function (taskId) {
+                        deletingTaskId = taskId;
+                        setTimeout(function() {
+                            self.taskManagement.deleteTask(taskId);
+                        }, 700);
+                    };
                 },
                 ngAfterViewInit: function () {
                     var self = this;
