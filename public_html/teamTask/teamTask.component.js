@@ -12,6 +12,7 @@
     app.TeamTaskComponent =
             ng.core.Component({
                 selector: 'team-task',
+                styleUrls: ['./teamTask/teamTask.css'],
                 templateUrl: 'teamTask/teamTask.component.html',
                 inputs: ['taskManagement']
             })

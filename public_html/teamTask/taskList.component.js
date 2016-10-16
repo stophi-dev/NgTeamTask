@@ -12,6 +12,7 @@
     app.TaskListComponent =
             ng.core.Component({
                 selector: 'task-list',
+                styleUrls: ['./teamTask/teamTask.css'],
                 templateUrl: 'teamTask/taskList.component.html',
                 inputs: ['taskManagement', 'user']
             })
