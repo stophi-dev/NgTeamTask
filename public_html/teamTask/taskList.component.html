@@ -25,8 +25,8 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
              <div class="modal-content" (click)="$event.stopPropagation();">
                 <div>{{deleteTaskConfirmText(task.title)}}</div>                
                 <div>
-                    <button class="button" (click)="deleteTask(task.id)">{{deleteDialogYesButtonText}}</button>
-                    <button class="button" (click)="hideDeleteTaskDialog()">{{deleteDialogCancelButtonText}}</button>
+                    <button (click)="deleteTask(task.id)">{{deleteDialogYesButtonText}}</button>
+                    <button (click)="hideDeleteTaskDialog()">{{deleteDialogCancelButtonText}}</button>
                 </div>
             </div>
         </div>

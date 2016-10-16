@@ -6,40 +6,95 @@ Copyright (c) 2016 Philip Stöhrer
 See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for details.
 */
 
-.user, .unassigned-tasks {        
-    margin: 1em;
+/* Color variables */
+$bg-color: white;
+$bg-color-container: #ded985;
+$bg-color-items: #ffffd7;
+$bg-color-items-hover: #ccddff;
+$bg-color-controls: #0063a6;
+$bg-color-controls-hover: darken($bg-color-controls, 10%);
+$font-color-controls: white;
+$font-color: black;
+$font-color-items: black;
+
+/* Spacial variables */
+$containerMargin: 1em;
+$default-padding: 0.5em;
+$large-padding: $default-padding * 1.5;
+$border-radius: 5px;
+$row-gap: 4px;
+$controls-height: 1.8em;
+
+/* Misc variables */
+$fade-duration: 0.7s;
+
+@mixin default-border($bg-color) {
+    border-radius: $border-radius;
+    border: none;
+    background-color: $bg-color;
 }
-.add-task-bar,
-.user {
-    background-color: #ded985;
-    border-radius: 5px;
+
+@mixin bold-border($color) {
+    border-radius: $border-radius;
+    border: 4px solid $color;
+    background-color: $color;
 }
+
+button {
+    @include default-border($bg-color-controls);
+    height: $controls-height;
+    color: $font-color-controls;    
+}
+
+button:hover {
+    background-color: $bg-color-controls-hover;
+}
+
+progress {    
+    height: $controls-height;
+    color: $bg-color-controls;
+    font-size: 0.6em;    
+    text-indent: 0.5em;
+    border: 1px solid $bg-color-controls;
+    background: $font-color-controls;        
+}
+
+progress::-webkit-progress-bar { background: $font-color-controls; }
+progress::-webkit-progress-value { background: $bg-color-controls; }
+
+.row {    
+    padding: $default-padding;
+}
+
+.unassigned-tasks {        
+    margin: $containerMargin;
+}
+
+/* Add tasks */
+
 .add-task-bar {
-    display: flex;
-    border: 10px solid #ded985;
-    margin-bottom: 4px;        
+    @extend .row;
+    @include default-border($bg-color-container);    
+    display: flex;    
+    margin-bottom: $row-gap;
 }
 .add-task-bar input {        
+    @include default-border($bg-color);    
     flex-grow: 1;
-    border-radius: 5px;
-    border: none;
-    line-height: 1.5em;
-    height: 1.8em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    height: $controls-height;
+    padding-left: $default-padding;
+    padding-right: $default-padding;
     margin-right: 0.5em;
 }
-.add-task-bar button {
-    border-radius: 5px;
-    background-color: #0063a6;
-    color: white;
-    border: none;
-}
+
+/* Users */
+
 .user {
-    border: 4px solid #ded985;
+    @include bold-border($bg-color-container);
+    margin: $containerMargin;
 }
 .user-info {
-    padding: 1em; 
+    padding: $large-padding; 
 }
 .user-name {
     font-size: larger;
@@ -48,24 +103,25 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
     color: #333;
 }
 
-.task-item, .task-not-assigned {
-    padding: 0.5em;
-    background-color: #ffffd7;        
-}
+/* Tasks */
+
 .task-item {
+    @extend .row;
+    @include default-border($bg-color-items);
     display: flex;
-    margin-bottom: 4px;
-    border-radius: 5px;
-    cursor: pointer;       
-    vertical-align: middle;
+    align-items: center;
+    margin-bottom: $row-gap;
+    cursor: pointer;    
 }
 .task-item:last-child {
     margin-bottom: 0;
 }
 .task-item:hover {
-    background-color: #ccddff;
+    background-color: $bg-color-items-hover;    
 }
 .task-not-assigned {
+    @extend .row;
+    @include default-border($bg-color-items);
     font-style: italic;
     color: #555;        
 }
@@ -78,23 +134,8 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
     padding-left: 6px;
     margin-right: 0.5em;
 }
-progress {
-    color: #0063a6;
-    font-size: .6em;
-    line-height: 1.5em;
-    text-indent: .5em;
-    height: 1.8em;
-    border: 1px solid #0063a6;
-    background: #fff;        
-}
 
-.button {
-    border-radius: 5px;
-    background-color: #0063a6;
-    color: white;
-    border: none;
-    height: 1.5em;
-}
+/* Modal Dialog */
 
 .modal-dialog {
     z-index: 1000;
@@ -104,36 +145,26 @@ progress {
     width: 100%; 
     height: 100%;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.7);    
     font-size: larger;
     text-align: center;
     cursor: default;
 }
 
 .modal-content {
-    display: inline-block;
-    background-color: #fefefe;
+    @include default-border($bg-color);
+    display: inline-block;    
     margin: 15%;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 5px;
+    padding: 20px;    
     line-height: 1.5em;
 }
 
-@-webkit-keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 100%}
-}
-@keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 100%}
-}
-
+/* Animations */
 
 .fade-in,
 .fade-out {
-    -webkit-animation-duration: 0.7s;
-    animation-duration: 0.7s;
+    -webkit-animation-duration: $fade-duration;
+    animation-duration: $fade-duration;
 }
 
 .fade-in {
@@ -146,6 +177,15 @@ progress {
     animation-name: fadeOut;        
 }
 
+@-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 100%}
+}
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 100%}
+}
+
 @-webkit-keyframes fadeOut {
     from {opacity: 100%}
     to {opacity: 0%}
@@ -154,6 +194,3 @@ progress {
     from {opacity: 100%}
     to {opacity: 0}
 }
-
-progress::-webkit-progress-bar { background: #fff; }
-progress::-webkit-progress-value { background: #0063a6; }
