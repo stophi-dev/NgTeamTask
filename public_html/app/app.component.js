@@ -71,8 +71,8 @@
                             workUnits: 10
                         });
 
-                        self.taskManagement.assignTaskToUser(0, 0);
-                        self.taskManagement.assignTaskToUser(1, 0);
+                        self.taskManagement.assignTaskToUser(0, 2);
+                        self.taskManagement.assignTaskToUser(1, 2);
                         self.taskManagement.assignTaskToUser(2, 3);
                         self.taskManagement.assignTaskToUser(3, 1);
                     }
