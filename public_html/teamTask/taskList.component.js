@@ -29,7 +29,21 @@
                     } else {
                         this.noItemText = 'Currently no task assigned. To assign a task, drag it here.';
                         this.tasks = this.taskManagement.getTasksForUserId(this.user.id);
-                    }                                                
+                    }
+
+                    this.deleteTaskToolTip = 'Delete Task';
+                    this.currentTaskToDelete = null;
+                    this.deleteTaskConfirmText = function (title) {
+                        return 'Do you really want to delete "' + title + '"?';
+                    };
+                    this.showDeleteTaskDialog = function (taskId) {
+                        this.currentTaskToDelete = taskId;
+                    };
+                    this.hideDeleteTaskDialog = function() {
+                        this.currentTaskToDelete = null;
+                    };
+                    this.deleteDialogYesButtonText = 'Yes, delete';
+                    this.deleteDialogCancelButtonText = 'Cancel';
                 },
                 ngAfterViewInit: function () {
                     var self = this;

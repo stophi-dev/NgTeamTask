@@ -15,7 +15,8 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
         display: flex;
         margin-bottom: 4px;
         border-radius: 5px;
-        cursor: pointer;        
+        cursor: pointer;       
+        vertical-align: middle;
     }
     .task-item:last-child {
         margin-bottom: 0;
@@ -34,6 +35,7 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
         width: 5ch;
         text-align: right;
         padding-left: 6px;
+        margin-right: 0.5em;
     }
     progress {
         color: #0063a6;
@@ -45,17 +47,63 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
         background: #fff;        
     }
 
+    .button {
+        border-radius: 5px;
+        background-color: #0063a6;
+        color: white;
+        border: none;
+        height: 1.5em;
+    }
+
+    .modal-dialog {
+        z-index: 1000;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.6);
+        font-size: larger;
+        text-align: center;
+        cursor: default;
+    }
+
+    .modal-content {
+        display: inline-block;
+        background-color: #fefefe;
+        margin: 15%;
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 5px;
+        line-height: 1.5em;
+    }
+
     progress::-webkit-progress-bar { background: #fff; }
     progress::-webkit-progress-value { background: #0063a6; }
 </style>
 <div class="task-container">    
     <div class="task-not-assigned" *ngIf="tasks.length === 0">
-       {{noItemText}}
+        {{noItemText}}
     </div>
     <div class="task-item" *ngFor="let task of tasks"
          attr.data-taskid="{{task.id}}">
-        <span class="task-title">{{task.title}}</span>
+         <span class="task-title">{{task.title}}</span>
         <progress attr.max="{{task.workUnits}}" attr.value="{{task.progress}}"></progress>
         <span class="task-progress-value">{{task.getProgressInPercent()}}%</span>
+        <button class="button" [title]="deleteTaskToolTip" (click)="showDeleteTaskDialog(task.id)">
+            <span class="ui-icon ui-icon-close"></span>
+        </button>
+        
+        <div class="modal-dialog" *ngIf="currentTaskToDelete === task.id" 
+             (click)="hideDeleteTaskDialog()" (mousedown)="$event.stopPropagation();">
+             <div class="modal-content">
+                <div>{{deleteTaskConfirmText(task.title)}}</div>                
+                <div>
+                    <button class="button" (click)="taskManagement.deleteTask(task.id)">{{deleteDialogYesButtonText}}</button>
+                    <button class="button" (click)="hideDeleteTaskDialog()">{{deleteDialogCancelButtonText}}</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
