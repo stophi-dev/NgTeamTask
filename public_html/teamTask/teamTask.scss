@@ -139,7 +139,7 @@ progress::-webkit-progress-value { background: $bg-color-controls; }
 
 .modal-dialog {
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%; 
