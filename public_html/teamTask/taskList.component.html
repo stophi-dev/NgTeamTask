@@ -9,7 +9,7 @@ See https://raw.githubusercontent.com/stophi-dev/NgTeamTask/master/LICENSE for d
 
 <div class="task-container">    
     <div class="task-not-assigned fade-in" *ngIf="tasks.length === 0">
-        {{noItemText}}
+        {{noItemText()}}
     </div>
     <div class="task-item fade-in" *ngFor="let task of tasks" [class.fade-out]="isDeleting(task.id)"
          attr.data-taskid="{{task.id}}">

@@ -26,11 +26,17 @@
                     var self = this;
                     this.unassigned = typeof this.user === typeof undefined;
                     if (this.unassigned) {
-                        this.noItemText = 'All ongoing tasks are assigned to a user.';
                         this.tasks = this.taskManagement.getUnassignedTasks();
+                        this.noItemText = function () {
+                            return this.taskManagement.getTaskCount() === 0 ?
+                                    'There are no tasks existing. Add a new task and assign it to a user.' :
+                                    'All ongoing tasks are assigned to a user.';
+                        };
                     } else {
-                        this.noItemText = 'Currently no task assigned. To assign a task, drag it here.';
                         this.tasks = this.taskManagement.getTasksForUserId(this.user.id);
+                        this.noItemText = function () {
+                            return 'Currently no task assigned. To assign a task, drag it here.';
+                        };
                     }
 
                     this.deleteTaskToolTip = 'Delete Task';
@@ -41,19 +47,19 @@
                     this.showDeleteTaskDialog = function (taskId) {
                         this.currentTaskToDelete = taskId;
                     };
-                    this.hideDeleteTaskDialog = function() {
+                    this.hideDeleteTaskDialog = function () {
                         this.currentTaskToDelete = null;
                     };
                     this.deleteDialogYesButtonText = 'Yes, delete';
                     this.deleteDialogCancelButtonText = 'Cancel';
-                    
+
                     var deletingTaskId = null;
-                    this.isDeleting = function(taskId) {
+                    this.isDeleting = function (taskId) {
                         return deletingTaskId === taskId;
                     };
                     this.deleteTask = function (taskId) {
                         deletingTaskId = taskId;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             self.taskManagement.deleteTask(taskId);
                         }, 700);
                     };
