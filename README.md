@@ -1,6 +1,7 @@
 # NgTeamTask
-Demo project: AngularJS component to manage tasks between multiple users
-[![Build Status](https://api.travis-ci.org/stophi-dev/NgTeamTask.svg?branch=master)](https://travis-ci.org/stophi-dev/NgTeamTask)
+Demo project: AngularJS component to manage tasks between multiple users<br />
+[![Build Status](https://api.travis-ci.org/stophi-dev/NgTeamTask.svg?branch=master)](https://travis-ci.org/stophi-dev/NgTeamTask) 
+(Currently only checks if compilation of SASS file is sucessful)
 
 
 ## How to run this project
